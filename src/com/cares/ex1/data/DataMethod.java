@@ -41,28 +41,18 @@ public class DataMethod {
 		return arr;
 	}
 
-	public void dataSearch(ArrayList<PersonDTO> arr) {
-		if (arr.size() == 0) {
-			function.printSub("입력된 정보가 없습니다!!");
-		} else {
-			function.printSub("정보를 검색합니다.");
-			System.out.println("검색하고자 하는 정보의 이름을 입력해주세요.");
-			String search = sc.next();
-			boolean check = true;
-			for(int i=0;i<arr.size();i++) {
-				if (search.trim().equals(arr.get(i).getName().trim())) {
-					ArrayList<PersonDTO> arrSearch = new ArrayList<>();
-					arrSearch.add(arr.get(i));
-					this.dataPrint(arrSearch);
-					check = false;
-					break;
-				}	
-			}
-			if (check) {
-				function.printSub("검색하신 정보가 없습니다!!");
 
-			}
-		}
+
+	public void dataPrint(PersonDTO personDTO) {
+		if (personDTO != null) {
+			System.out.print(personDTO.getName()+ "\t");
+			System.out.print(personDTO.getNickname()+ "\t");
+			System.out.print(personDTO.getEmail()+ "\t");
+			System.out.print(personDTO.getPhoneNum()+ "\t");
+			System.out.print(personDTO.getBirthday()+ "\t");			
+			System.out.println();
+		} 
+
 	}
 
 	public void dataPrint(ArrayList<PersonDTO> arr) {	
@@ -74,12 +64,7 @@ public class DataMethod {
 			function.printDataSub();
 
 			for(int i=0;i<arr.size();i++) {
-				System.out.print(arr.get(i).getName()+ "\t");
-				System.out.print(arr.get(i).getNickname()+ "\t");
-				System.out.print(arr.get(i).getEmail()+ "\t");
-				System.out.print(arr.get(i).getPhoneNum()+ "\t");
-				System.out.print(arr.get(i).getBirthday()+ "\t");			
-				System.out.println();
+				this.dataPrint(arr.get(i));
 			}
 		}
 	}

@@ -26,6 +26,29 @@ public class Function {
 		System.out.println("===================================");
 	}
 
+	public PersonDTO search(ArrayList<PersonDTO> arr) {
+		if (arr.size() == 0) {
+			this.printSub("입력된 정보가 없습니다!!");
+		} else {
+			PersonDTO personDTO = new PersonDTO();
+			this.printSub("정보를 검색합니다.");
+			System.out.println("검색하고자 하는 정보의 이름을 입력해주세요.");
+			String search = sc.next();
+			boolean check = true;
+			for(int i=0;i<arr.size();i++) {
+				if (search.trim().equals(arr.get(i).getName().trim())) {
+					personDTO = arr.get(i);
+					check = false;
+					return personDTO;
+				}	
+			}
+			if (check) {
+				this.printSub("검색하신 정보가 없습니다!!");				
+			}
+		}
+		return null;
+	}
+	
 	public void menuSelect() {
 		DataMethod dataMethod = new DataMethod();
 		ArrayList<PersonDTO> arr = new ArrayList<>();
@@ -45,7 +68,7 @@ public class Function {
 			if (select == 1) {				
 				dataMethod.dataPrint(arr);				
 			} else if (select == 2) {
-				dataMethod.dataSearch(arr);
+				dataMethod.dataPrint(this.search(arr));
 			} else if (select == 3) {
 				arr.add(dataMethod.addData());
 			} else if (select == 4) {
